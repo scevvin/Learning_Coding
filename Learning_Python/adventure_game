@@ -70,14 +70,6 @@ def field_prologue(name, inventory, cabin_figure, cave_figure):
     field_choice(name, inventory, cabin_figure, cave_figure)
 
 
-# Only after the user has gone through cabin or cave choices
-def field_again(name, inventory, cabin_figure, cave_figure):
-    print_pause("Coming back to the field, the cold overwhelms you.")
-    print_pause("Which reminds you, you better choose fast.")
-    print_pause("What do you choose to do?")
-    field_choice(name, inventory, cabin_figure, cave_figure)
-
-
 # The choice of cabin or cave is stored here.
 def field_choice(name, inventory, cabin_figure, cave_figure):
     direction = input("Please type cabin or cave\n")
@@ -87,6 +79,14 @@ def field_choice(name, inventory, cabin_figure, cave_figure):
     if direction.lower() == "cabin":
         print_pause("The warm and inviting nature of the cabin is hard to pass up.")
         cabin(name, inventory, cabin_figure, cave_figure)
+
+
+# Only after the user has gone through cabin or cave choices
+def field_again(name, inventory, cabin_figure, cave_figure):
+    print_pause("Coming back to the field, the cold overwhelms you.")
+    print_pause("Which reminds you, you better choose fast.")
+    print_pause("What do you choose to do?")
+    field_choice(name, inventory, cabin_figure, cave_figure)
 
 
 # -----------------------------------------------CABIN SEQUENCE-----------------------------------------------
@@ -99,7 +99,7 @@ def cabin(name, inventory, cabin_figure, cave_figure):
         cabin_choice(name, inventory, cabin_figure, cave_figure)
     if "Ancient Book" not in inventory:
         print_pause("Getting closer to the cabin, you can't help but feel uneasy.")
-        print_pause(f"You look at your {inventory} with unsurity.")
+        print_pause(f"You look at your {inventory[0]} with unsurity.")
         print_pause("Though the warmth from the cabin pulls you in,")
         print_pause("You can't help but wonder if this is the right choice?")
         cabin_choice(name, inventory, cabin_figure, cave_figure)
@@ -118,12 +118,42 @@ def cabin_choice(name, inventory, cabin_figure, cave_figure):
 
 # both outcomes of knocking on cabin
 def cabin_knock(name, inventory, cabin_figure, cave_figure):
+    print_pause("You decide to knock on the cabin door,")
+    print_pause("the warmth of the fire infront of you")
+    print_pause("and the cold night air chilling your back.")
+    print_pause("As soon as your knuckle makes the first sound")
+    print_pause("the door flies open,")
+    print_pause("the lights in the house extinguish,")
+    print_pause("the smell of food disappears,")
+    print_pause(f"and a{cabin_figure} appears in front of you. ")
     if "Ancient Book" in inventory:
-        print_pause("You knock on the cabin, you won?")
+        print_pause("Normally you would be scared stiff,")
+        print_pause("but the calming experience in the cave prepared you for this.")
+        print_pause("With the Ancient Book in hand,")
+        print_pause("You open to the same page you saw in the cave.")
+        print_pause(f"The {cabin_figure} instantly retreats into the darkness it emerged from.")
+        print_pause("And as soon as the figure is gone,")
+        print_pause("the lights come on, the warmth returns.")
+        print_pause("You made it; you're home.")
+        print_pause("Congratulations! You've won!")
         play_again()
     if "Ancient Book" not in inventory:
-        print_pause(f"A scary {cabin_figure} flies out at you and you die!")
-        print("Woops you died.")
+        print_pause("Standing in complete fear of this....thing")
+        print_pause("You can not move or speak.")
+        print_pause(f"You see a swirling void opening behind the {cabin_figure}.")
+        print_pause("With a wave of  what seems to be its hand,")
+        print_pause("you are lift off the ground and slowly float towards it.")
+        print_pause("The black void begins to open, lighting surrdounding it.")
+        print_pause("The figure turns as you get closer and heads into the void.")
+        print_pause("Unable to control your motions, you follow the figure.")
+        print_pause("The lightning flashes gets more intense,")
+        print_pause("You feel an immense pressure all around you,")
+        print_pause("Then weightlessness instatly.")
+        print_pause("And with a thud, you hit the ground.")
+        print_pause("You are back at the beginning of the forest,")
+        print_pause("though, cabin and cave are gone.")
+        print_pause("'Where am I,' you wonder, trying to survey where you are.")
+        print_pause("You have been lost to time.")
         play_again()
 
 
@@ -146,6 +176,7 @@ def cave(name, inventory, cabin_figure, cave_figure):
         cave_choice(name, inventory, cabin_figure, cave_figure)
 
 
+# enter the cave or leave
 def cave_choice(name, inventory, cabin_figure, cave_figure):
     print_pause("Do you enter the cave?")
     cabin_choice = input("Please type 'enter' to enter the cave or 'leave' to explore more\n")
@@ -155,13 +186,16 @@ def cave_choice(name, inventory, cabin_figure, cave_figure):
         field_again(name, inventory, cabin_figure, cave_figure)
 
 
-# enter the cave or leave
+# enter the cave - with or without book options
 def cave_enter(name, inventory, cabin_figure, cave_figure):
     if "Ancient Book" in inventory:
-        print_pause("The memories of what you experience here flood your mind.")
+        print_pause("The memories of what you experienced here flood your mind.")
         print_pause("However, you feel as though there is nothing left for you here.")
+        print_pause("You walk out of the cave and back to the field.")
         field_again(name, inventory, cabin_figure, cave_figure)
     if "Ancient Book" not in inventory:
+        print_pause("The cold and dark of the cave fills you with worry.")
+        print_pause("'Why did I come here first,' you wonder.")
         print_pause(f"You are greeted by {cave_figure } who hands you an Ancient Book!")
         print_pause("Congratulations, you found the Ancient Book!")
         inventory.clear()
@@ -169,6 +203,7 @@ def cave_enter(name, inventory, cabin_figure, cave_figure):
         field_again(name, inventory, cabin_figure, cave_figure)
 
 
+# ------------------- PLAY AGAIN/PLAY GAME -----------------------
 def play_again():
     again = input("Would you like to play again? Please type yes or no\n")
     if again.lower() == "yes":
