@@ -1,23 +1,12 @@
-#write story
-#create arrays from story
-#form structure of game: character creation, story flow, choice arcs
-#add randomization
-#add restart option
 
 import random
 import time
 
-def print_pause(msg_to_print):
-	print(msg_to_print)
-	time.sleep(1)
 
-def print_pause2(msg_to_print):
-	print(msg_to_print)
+def print_pause():
+	print()
 	time.sleep(2)
 
-def print_pause3(msg_to_print):
-	print(msg_to_print)
-	time.sleep(3)
 
 def play_game():
 	character = []
@@ -29,18 +18,14 @@ def play_game():
 	character_creation(character, inventory, dark_option, light_option)
 	prologue(character, inventory, dark_option, light_option)
 
-########### CHOICES ARRAYS ############
 
-#ask for character name
-#check if name is ok
-#offer name change
-#continue on to prologue
 def character_creation(character, inventory, dark_option, light_option):
 	name = input("Adventurer, please tell me your name.\n")
-	confirm = input(f"You typed {name}, is that correct?\nPlease type yes or no.\n")
+	print_pause(f"You typed {name}. Is that ok?")
+	confirm = input("Please type yes to continue or no to change.\n")
 	if confirm.lower() == "yes":
-		print_pause3(f"Welcome to your adventure, {name}!")
-		print_pause2(f"Make sure to have your trusty {inventory[0]} ready!")
+		print_pause3("Welcome to your adventure, " + name + "!")
+		print_pause2("Make sure to have your trusty " + inventory[0] + " ready!")
 		character.append(name)
 		character.append(inventory)
 		print(character)
@@ -90,13 +75,13 @@ def cabin(character, inventory, dark_option, light_option):
 	# print_pause("and the warmth eminating from the fire warms your soul.")
 	# print_pause("You put a hand on the fence gate,")
 
-	############ HAS ANCIENT BOOK #################
+	#HAS ANCIENT BOOK
 	if "Ancient Book" in inventory:
 		print_pause("you feel confident that you have found home.")
 		print_pause("Do you open the gate to knock on the front door?")
 		enter_cabin = input("Type 'knock' to enter or 'leave' to go back to the field.")
 		if enter_cabin == "knock":
-			print_pause(f"You open the gate and walk towards the front door, {inventory[0]} in hand.")
+			print_pause("You open the gate and walk towards the front door, {inventory[0]} in hand.")
 			print_pause("The instant you knock...")
 			print_pause("the lights extinguish...")
 			print_pause("")
@@ -105,10 +90,11 @@ def cabin(character, inventory, dark_option, light_option):
 			print_pause("")
 			print_pause("")
 			play_again()
-	########### NO ANCIENT BOOK #####################
+
+	#NO ANCIENT BOOK
 	else:
 		print_pause("but you can't help but wonder what was in the cave you saw earlier.")
-		print_pause(f"You look at your {inventory[0]} and become more worried.")
+		print_pause("You look at your {inventory[0]} and become more worried.")
 		enter_cabin = input("Type 'knock' to enter or 'leave' to go back to the field.")
 		if enter_cabin == "knock":
 			print_pause("you go to the cabin without the book!")
